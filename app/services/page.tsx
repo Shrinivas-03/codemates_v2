@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import WorkflowUniverse from "../../components/WorkflowUniverse";
+// import WorkflowUniverse from "../../components/WorkflowUniverse";
+import AIOSDashboard from "../../components/AIOSDashboard";
 import { motion } from "framer-motion";
 import {
   Sparkles,
@@ -69,8 +70,9 @@ export default function ServicesPage() {
         </div>
       </nav>
 
-      <div id="workflow-universe" className="relative z-10 pt-20">
-        <WorkflowUniverse />
+      {/* 2. THE AI OPERATING SYSTEM ENVIRONMENT */}
+      <div id="aios-environment" className="relative z-10 pt-20">
+        <AIOSDashboard />
       </div>
 
       {/* PREMIUM CTAS / CONVERTING BOTTOM CAROUSEL */}
