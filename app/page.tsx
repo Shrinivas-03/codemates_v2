@@ -10,6 +10,7 @@ import {
   Sparkles,
   Workflow,
 } from "lucide-react";
+import Link from "next/link";
 import NeuralBackground from "../components/NeuralBackground";
 import AutomationPipeline from "../components/AutomationPipeline";
 import CRMDashboard from "../components/CRMDashboard";
@@ -17,26 +18,31 @@ import AIAssistantWidget from "../components/AIAssistantWidget";
 
 const services = [
   {
+    id: "web-dev",
     title: "Web Development",
     desc: "Modern, high-performance websites and web applications engineered for speed, responsiveness, and seamless user experiences.",
     icon: Globe,
   },
   {
+    id: "custom-software",
     title: "Custom Software",
     desc: "Bespoke digital platforms, tailored CRM/ERP systems, and custom databases designed to fit your unique business workflows.",
     icon: Code2,
   },
   {
+    id: "chatbot-integration",
     title: "Chatbot Integration",
     desc: "Intelligent conversational agents and AI voicebots integrated across WhatsApp, websites, and social media platforms.",
     icon: MessageSquare,
   },
   {
+    id: "ai-automation",
     title: "AI Integration through n8n",
     desc: "Connect and automate your entire software stack with advanced multi-step workflows powered by n8n orchestrations.",
     icon: Workflow,
   },
   {
+    id: "ai-development",
     title: "Bespoke AI Works",
     desc: "Custom LLMs, prompt engineering, semantic search, AI-agents, and automated solutions custom-tailored for your agency needs.",
     icon: Sparkles,
@@ -89,7 +95,7 @@ export default function Home() {
           </h1>
 
           <div className="hidden md:flex items-center gap-8 text-sm text-gray-300">
-            <a href="#">Services</a>
+            <Link href="/services" className="hover:text-white transition duration-250">Services</Link>
             <a href="#">Projects</a>
             <a href="#">Automation</a>
             <a href="#">Pricing</a>
@@ -320,10 +326,10 @@ export default function Home() {
                     {service.desc}
                   </p>
 
-                  <button className="mt-8 text-cyan-400 flex items-center gap-2 font-medium">
+                  <Link href={`/services#${service.id}`} className="mt-8 text-cyan-400 flex items-center gap-2 font-medium hover:text-cyan-300 transition-colors">
                     Learn More
-                    <ArrowRight size={16} />
-                  </button>
+                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </motion.div>
               );
             })}
