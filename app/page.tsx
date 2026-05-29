@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   Bot,
@@ -9,6 +10,9 @@ import {
   MessageSquare,
   Sparkles,
   Workflow,
+  Menu,
+  X,
+  Mail,
 } from "lucide-react";
 import Link from "next/link";
 import NeuralBackground from "../components/NeuralBackground";
@@ -56,6 +60,69 @@ const stats = [
   { value: "100%", label: "Secure Systems" },
 ];
 
+const TEAM = [
+  {
+    id: 1,
+    name: "Shrinivas Patil",
+    position: "Founder & CEO",
+    tagline: "Translating customer visions into enterprise-grade digital systems.",
+    skills: ["Software Architecture", "Product Strategy", "Database Engineering"],
+    linkedin: "https://linkedin.com",
+    email: "shrinivas@codemates.in",
+    status: "ONLINE",
+    statusColor: "bg-emerald-400",
+    badgeId: "CM-CEO-001",
+  },
+  {
+    id: 2,
+    name: "Rohan Mehta",
+    position: "Full Stack Architect",
+    tagline: "Engineering premium, pixel-perfect layouts and high-speed web pipelines.",
+    skills: ["Next.js", "FastAPI", "PostgreSQL"],
+    linkedin: "https://linkedin.com",
+    email: "rohan@codemates.in",
+    status: "CODING",
+    statusColor: "bg-cyan-400",
+    badgeId: "CM-DEV-042",
+  },
+  {
+    id: 3,
+    name: "Ananya Sharma",
+    position: "AI & ML Lead",
+    tagline: "Crafting custom LLM integrations, prompt maps, and vector search retrievers.",
+    skills: ["Python", "Machine Learning", "LLMs & RAG"],
+    linkedin: "https://linkedin.com",
+    email: "ananya@codemates.in",
+    status: "ONLINE",
+    statusColor: "bg-emerald-400",
+    badgeId: "CM-AI-018",
+  },
+  {
+    id: 4,
+    name: "Kabir Roy",
+    position: "Principal UI/UX Designer",
+    tagline: "Structuring visual storytelling, design tokens, and memorable interactions.",
+    skills: ["Figma", "Design Systems", "Interactive Design"],
+    linkedin: "https://linkedin.com",
+    email: "kabir@codemates.in",
+    status: "IN MEETING",
+    statusColor: "bg-purple-400",
+    badgeId: "CM-DSN-009",
+  },
+  {
+    id: 5,
+    name: "Aditya Sen",
+    position: "Backend & DevOps Engineer",
+    tagline: "Maintaining reliable servers, CI/CD pipes, and dockerized microservices.",
+    skills: ["Docker & Kubernetes", "AWS Cloud", "Redis Caching"],
+    linkedin: "https://linkedin.com",
+    email: "aditya@codemates.in",
+    status: "CODING",
+    statusColor: "bg-cyan-400",
+    badgeId: "CM-OPS-031",
+  },
+];
+
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -77,6 +144,8 @@ const cardVariants = {
 } as const;
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <main className="bg-[#060816] text-white overflow-hidden relative">
       {/* HTML5 Canvas Neural Background */}
@@ -90,22 +159,101 @@ export default function Home() {
         className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-white/10 bg-[#060816]/70"
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <h1 className="text-2xl font-bold tracking-wide">
-            Codemates<span className="text-cyan-400"> India</span>
-          </h1>
+          <Link href="/" className="text-2xl font-bold tracking-wide flex items-center gap-2 group">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 group-hover:to-cyan-400 transition duration-300">
+              Codemates
+            </span>
+            <span className="text-cyan-400 tracking-tight font-extrabold group-hover:text-white transition duration-300">
+              India
+            </span>
+          </Link>
 
-          <div className="hidden md:flex items-center gap-8 text-sm text-gray-300">
-            <Link href="/services" className="hover:text-white transition duration-250">Services</Link>
-            <a href="#">Projects</a>
-            <a href="#">Automation</a>
-            <a href="#">Pricing</a>
-            <a href="#">Contact</a>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+            <Link href="/" className="hover:text-white transition duration-200">Home</Link>
+            <Link href="/services" className="hover:text-white transition duration-200">Services</Link>
+            <Link href="/projects" className="hover:text-white transition duration-200">Projects</Link>
+            <Link href="/about" className="hover:text-white transition duration-200">About</Link>
+            <Link href="/estimate" className="hover:text-white transition duration-200">Estimate</Link>
+            <Link href="/contact" className="hover:text-white transition duration-200">Contact</Link>
           </div>
 
-          <button className="bg-cyan-500 hover:bg-cyan-400 transition px-5 py-2 rounded-full text-sm font-semibold">
+          <Link href="/estimate" className="hidden md:inline-block bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-sm transition px-5 py-2.5 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.25)]">
             Book Call
+          </Link>
+
+          {/* Mobile Hamburger Toggle */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden text-gray-400 hover:text-white transition cursor-pointer p-1"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden border-b border-white/5 bg-[#060816]/95 backdrop-blur-2xl overflow-hidden"
+            >
+              <div className="flex flex-col gap-4.5 px-6 py-6 text-sm font-semibold tracking-wide">
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/services"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="/projects"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Projects
+                </Link>
+                <Link
+                  href="/about"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  About
+                </Link>
+                <Link
+                  href="/estimate"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Estimate
+                </Link>
+                <Link
+                  href="/contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Contact
+                </Link>
+                <Link
+                  href="/estimate"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-center py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(6,182,212,0.25)] block"
+                >
+                  Book Call
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* HERO */}
@@ -154,14 +302,14 @@ export default function Home() {
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4 items-center">
-              <button className="bg-cyan-500 hover:bg-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.35)] transition duration-300 px-8 py-4.5 rounded-2xl font-bold flex items-center gap-3 group text-black cursor-pointer text-sm">
+              <Link href="/estimate" className="bg-cyan-500 hover:bg-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.35)] transition duration-300 px-8 py-4.5 rounded-2xl font-bold flex items-center gap-3 group text-black cursor-pointer text-sm">
                 Get Started
                 <ArrowRight size={16} className="transition group-hover:translate-x-1" />
-              </button>
+              </Link>
 
-              <button className="border border-white/10 bg-white/5 hover:bg-white/10 transition duration-300 px-8 py-4.5 rounded-2xl font-bold text-sm cursor-pointer">
+              <Link href="/projects" className="border border-white/10 bg-white/5 hover:bg-white/10 text-white transition duration-300 px-8 py-4.5 rounded-2xl font-bold text-sm">
                 View Projects
-              </button>
+              </Link>
             </div>
 
             <div className="mt-12 flex flex-wrap gap-8 text-sm text-gray-500 font-medium">
@@ -361,6 +509,121 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* TEAM MEMBER CAROUSEL */}
+      <section className="py-24 bg-[#03040c] relative overflow-hidden z-10 w-full border-t border-white/5">
+        <style dangerouslySetInnerHTML={{ __html: `
+          @keyframes infiniteScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-infinite-scroll {
+            animation: infiniteScroll 35s linear infinite;
+          }
+          .animate-infinite-scroll:hover {
+            animation-play-state: paused;
+          }
+        `}} />
+
+        <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
+          <span className="text-cyan-400 font-bold uppercase tracking-widest text-xs font-mono">
+            THE ARCHITECTS
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black mt-3 text-white">
+            Meet The Engineers
+          </h2>
+          <p className="text-gray-400 mt-4 text-sm md:text-base max-w-2xl mx-auto">
+            The core builders of Codemates India. Hover over any badge to inspect credentials, tech skills datasets, and live status.
+          </p>
+        </div>
+
+        {/* Infinite Carousel Wrapper */}
+        <div className="relative w-full overflow-hidden flex py-4 select-none">
+          {/* Left/Right fading edge masks for high-end cinematic gradient */}
+          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#03040c] to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#03040c] to-transparent z-20 pointer-events-none" />
+
+          {/* Scrolling track: duplicated 2 times for seamless infinite loops */}
+          <div className="flex gap-6 animate-infinite-scroll min-w-max px-3">
+            {[...TEAM, ...TEAM].map((member, i) => (
+              <div
+                key={`${member.id}-${i}`}
+                className="w-[260px] border border-white/10 rounded-[30px] p-6 bg-gradient-to-b from-white/5 to-white/0 relative hover:border-cyan-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer group"
+              >
+                {/* Glass Badge Chip look */}
+                <div className="absolute top-0 inset-x-0 h-4 bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none" />
+
+                {/* Badge Header Info */}
+                <div className="flex flex-col">
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-[7.5px] font-mono tracking-widest text-cyan-400 font-bold uppercase">
+                      {member.badgeId}
+                    </span>
+                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/5 text-[6.5px] font-bold text-gray-300 border border-white/5">
+                      <span className={`w-1.2 h-1.2 rounded-full ${member.statusColor} animate-pulse`} />
+                      {member.status}
+                    </div>
+                  </div>
+
+                  {/* Profile Graphic / Seed Avatar */}
+                  <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center mb-5 relative overflow-hidden bg-[#060816] mx-auto transition-colors duration-300 shadow-[0_0_15px_rgba(255,255,255,0.03)] group-hover:border-cyan-400">
+                    <span className="text-lg font-bold uppercase text-gray-300 group-hover:text-cyan-400 transition-colors duration-300">
+                      {member.name.split(" ").map((n) => n[0]).join("")}
+                    </span>
+                  </div>
+
+                  <h3 className="text-base font-black text-center text-white mb-1 group-hover:text-cyan-300 transition-colors duration-300">
+                    {member.name}
+                  </h3>
+                  <span className="text-[9px] font-mono font-bold text-center text-gray-500 uppercase tracking-wider mb-3 block">
+                    {member.position}
+                  </span>
+                  
+                  <p className="text-gray-400 text-[11px] text-center leading-relaxed font-medium mb-5 min-h-[50px]">
+                    "{member.tagline}"
+                  </p>
+                </div>
+
+                {/* Footer and dynamic Hover skills list */}
+                <div className="flex flex-col gap-3.5 border-t border-white/5 pt-4">
+                  <div className="flex flex-col gap-1.5">
+                    <span className="text-[6.5px] font-mono text-gray-500 font-bold uppercase">SKILLS MATRIX:</span>
+                    <div className="flex flex-wrap gap-1">
+                      {member.skills.map((skill, idx) => (
+                        <span
+                          key={idx}
+                          className="text-[7.5px] font-bold px-1.5 py-0.5 rounded bg-white/5 text-gray-400 font-mono"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-center mt-2.5">
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-white transition duration-200"
+                    >
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                    </a>
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="text-gray-400 hover:text-white transition duration-200"
+                    >
+                      <Mail size={13} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <motion.section
         initial={{ opacity: 0, scale: 0.95, y: 35 }}
@@ -384,9 +647,9 @@ export default function Home() {
               and automate workflows with Codemates.
             </p>
 
-            <button className="mt-10 bg-cyan-500 hover:bg-cyan-400 transition px-8 py-4 rounded-2xl font-semibold text-lg">
+            <Link href="/estimate" className="mt-10 bg-cyan-500 hover:bg-cyan-400 text-black inline-block shadow-[0_0_20px_rgba(6,182,212,0.3)] transition px-8 py-4.5 rounded-2xl font-semibold text-lg">
               Book Free Consultation
-            </button>
+            </Link>
           </div>
         </div>
       </motion.section>

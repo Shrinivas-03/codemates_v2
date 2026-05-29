@@ -1,17 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 // import WorkflowUniverse from "../../components/WorkflowUniverse";
 import AIOSDashboard from "../../components/AIOSDashboard";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
   ArrowRight,
   ArrowUpRight,
+  Menu,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 
 export default function ServicesPage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <main className="bg-[#020208] text-white min-h-screen overflow-hidden relative font-sans">
       {/* 1. FUTURISTIC BACKGROUND GRID & LIGHT NEBULAS */}
@@ -52,22 +56,101 @@ export default function ServicesPage() {
             <Link href="/services" className="text-white border-b border-cyan-400 pb-1">
               Services
             </Link>
-            <Link href="/#automation" className="hover:text-white transition duration-200">
-              Automation
+            <Link href="/projects" className="hover:text-white transition duration-200">
+              Projects
             </Link>
-            <Link href="/#pricing" className="hover:text-white transition duration-200">
-              Pricing
+            <Link href="/about" className="hover:text-white transition duration-200">
+              About
             </Link>
-            <Link href="/#contact" className="hover:text-white transition duration-200">
+            <Link href="/estimate" className="hover:text-white transition duration-200">
+              Estimate
+            </Link>
+            <Link href="/contact" className="hover:text-white transition duration-200">
               Contact
             </Link>
           </div>
 
-          <button className="relative group overflow-hidden bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300 px-5.5 py-2.5 rounded-full text-sm font-semibold text-black cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+          <Link
+            href="/estimate"
+            className="hidden md:inline-block relative group overflow-hidden bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300 px-5.5 py-2.5 rounded-full text-sm font-semibold text-black cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+          >
             <span className="relative z-10">Book Strategy Call</span>
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          </Link>
+
+          {/* Mobile Hamburger Toggle */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden text-gray-400 hover:text-white transition cursor-pointer p-1"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden border-b border-white/5 bg-[#020208]/95 backdrop-blur-2xl overflow-hidden"
+            >
+              <div className="flex flex-col gap-4.5 px-6 py-6 text-sm font-semibold tracking-wide">
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/services"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="/projects"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Projects
+                </Link>
+                <Link
+                  href="/about"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  About
+                </Link>
+                <Link
+                  href="/estimate"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Estimate
+                </Link>
+                <Link
+                  href="/contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Contact
+                </Link>
+                <Link
+                  href="/estimate"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-center py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(6,182,212,0.25)] block animate-pulse"
+                >
+                  Book Strategy Call
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* 2. THE AI OPERATING SYSTEM ENVIRONMENT */}
