@@ -674,7 +674,7 @@ export default function Home() {
               and automate workflows with Codemates. Let's discuss your custom software quote.
             </p>
 
-            <Link href="/estimate" className="mt-10 bg-cyan-500 hover:bg-cyan-400 text-black inline-block shadow-[0_0_20px_rgba(6,182,212,0.3)] transition px-8 py-4.5 rounded-2xl font-semibold text-lg">
+            <Link href="/contact" className="mt-10 bg-cyan-500 hover:bg-cyan-400 text-black inline-block shadow-[0_0_20px_rgba(6,182,212,0.3)] transition px-8 py-4.5 rounded-2xl font-semibold text-lg relative z-10 cursor-pointer">
               Book AI Automation Consultation
             </Link>
           </div>

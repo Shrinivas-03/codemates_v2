@@ -200,10 +200,10 @@ export default function ServicesPage() {
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-5">
-            <button className="bg-cyan-500 hover:bg-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.3)] transition duration-300 px-8 py-4.5 rounded-2xl font-bold flex items-center gap-3 group text-black cursor-pointer text-sm">
+            <Link href="/estimate" className="bg-cyan-500 hover:bg-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.3)] transition duration-300 px-8 py-4.5 rounded-2xl font-bold flex items-center justify-center gap-3 group text-black cursor-pointer text-sm">
               Initiate Project Roadmap
               <ArrowRight size={16} className="transition group-hover:translate-x-1" />
-            </button>
+            </Link>
 
             <Link
               href="/"
