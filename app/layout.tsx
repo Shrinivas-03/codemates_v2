@@ -39,6 +39,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://codemates.in",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" }
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+    ]
+  },
+  manifest: "/site.webmanifest"
 };
 
 export default function RootLayout({
@@ -90,6 +101,18 @@ export default function RootLayout({
       <head>
         <SchemaMarkup schema={orgSchema} />
         <SchemaMarkup schema={localBusinessSchema} />
+        {/* Google Analytics (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3W1PM5718"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-Q3W1PM5718');
+            `,
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col">
         {children}
