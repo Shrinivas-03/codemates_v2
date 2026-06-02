@@ -110,9 +110,9 @@ const TEAM = [
   {
     id: 4,
     name: "Ramchandra",
-    position: "Principal UI/UX Designer",
+    position: "Principal UI/UX Designer & Full Stack Developer",
     tagline: "Structuring visual storytelling, design tokens, and memorable interactions.",
-    skills: ["Figma", "Design Systems", "Interactive Design"],
+    skills: ["Figma", "Design Systems", "Interactive Design", "Java", "SpringBoot"],
     linkedin: "https://www.linkedin.com/in/ramchandra-18-/",
     email: "rajalasangi@gmail.com",
     status: "IN MEETING",
@@ -125,7 +125,7 @@ const TEAM = [
     name: "Basawaraja Gurikar",
     position: "DevOps Engineer & Security Expert",
     tagline: "Maintaining reliable servers, CI/CD pipes, and dockerized microservices.",
-    skills: ["Docker & Kubernetes", "AWS Cloud", "Redis Caching"],
+    skills: ["Docker & Kubernetes", "AWS Cloud", "Redis Caching", "OWASP 10", "BrupSuite"],
     linkedin: "https://www.linkedin.com/in/basavaraj-h-gurikar-95b739284/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BKlR8OkpcSU%2BMlxrHwwasLQ%3D%3D",
     email: "basavarajagurikar2004@gmail.com",
     status: "CODING",
@@ -530,7 +530,8 @@ export default function Home() {
 
       {/* TEAM MEMBER CAROUSEL */}
       <section className="py-24 bg-[#03040c] relative overflow-hidden z-10 w-full border-t border-white/5">
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           @keyframes infiniteScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -604,7 +605,7 @@ export default function Home() {
                   <span className="text-[9px] font-mono font-bold text-center text-gray-500 uppercase tracking-wider mb-3 block">
                     {member.position}
                   </span>
-                  
+
                   <p className="text-gray-400 text-[11px] text-center leading-relaxed font-medium mb-5 min-h-[50px]">
                     "{member.tagline}"
                   </p>
@@ -634,7 +635,7 @@ export default function Home() {
                       className="text-gray-400 hover:text-white transition duration-200"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
                     </a>
                     <a
