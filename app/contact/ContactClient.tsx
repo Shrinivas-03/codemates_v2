@@ -327,6 +327,9 @@ export default function ContactPage() {
             <Link href="/about" className="hover:text-white transition duration-200">
               About
             </Link>
+            <Link href="/careers" className="hover:text-white transition duration-200">
+              Careers
+            </Link>
             <Link href="/estimate" className="hover:text-white transition duration-200">
               Estimate
             </Link>
@@ -389,6 +392,13 @@ export default function ContactPage() {
                   className="text-gray-300 hover:text-white transition"
                 >
                   About
+                </Link>
+                <Link
+                  href="/careers"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Careers
                 </Link>
                 <Link
                   href="/estimate"

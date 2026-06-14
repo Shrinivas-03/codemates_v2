@@ -463,6 +463,9 @@ export default function AboutPage() {
             <Link href="/blog" className="hover:text-white transition duration-200">
               Blog
             </Link>
+            <Link href="/careers" className="hover:text-white transition duration-200">
+              Careers
+            </Link>
             <Link href="/estimate" className="hover:text-white transition duration-200">
               Estimate
             </Link>
@@ -533,6 +536,13 @@ export default function AboutPage() {
                   className="text-gray-300 hover:text-white transition"
                 >
                   Blog
+                </Link>
+                <Link
+                  href="/careers"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Careers
                 </Link>
                 <Link
                   href="/estimate"

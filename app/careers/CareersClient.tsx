@@ -287,6 +287,26 @@ export default function CareersClient() {
         console.log("Mock Application Submitting:", applicationData);
       }
 
+      // Send confirmation email
+      try {
+        const emailRes = await fetch("/api/careers/apply", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            fullName,
+          }),
+        });
+        if (!emailRes.ok) {
+          const errText = await emailRes.json().catch(() => ({}));
+          console.error("Failed to send confirmation email:", errText.error || emailRes.statusText);
+        }
+      } catch (emailErr) {
+        console.error("Error calling send confirmation email API:", emailErr);
+      }
+
       setIsSuccess(true);
     } catch (err: any) {
       console.error(err);
