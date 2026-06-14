@@ -186,6 +186,7 @@ export default function Home() {
             <Link href="/projects" className="hover:text-white transition duration-200">Projects</Link>
             <Link href="/about" className="hover:text-white transition duration-200">About</Link>
             <Link href="/blog" className="hover:text-white transition duration-200">Blog</Link>
+            <Link href="/careers" className="hover:text-white transition duration-200">Careers</Link>
             <Link href="/estimate" className="hover:text-white transition duration-200">Estimate</Link>
             <Link href="/contact" className="hover:text-white transition duration-200">Contact</Link>
           </div>
@@ -248,6 +249,13 @@ export default function Home() {
                   className="text-gray-300 hover:text-white transition"
                 >
                   Blog
+                </Link>
+                <Link
+                  href="/careers"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white transition"
+                >
+                  Careers
                 </Link>
                 <Link
                   href="/estimate"

@@ -99,3 +99,64 @@ CREATE POLICY "Allow admin full control" ON storage.objects
     FOR ALL 
     TO authenticated 
     USING (bucket_id = 'requirements');
+
+
+-- ── 4. JOB APPLICATIONS TABLE ──────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS public.job_applications (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    created_at TIMESTAMPTZ DEFAULT now(),
+    full_name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    linkedin TEXT,
+    location TEXT NOT NULL,
+    job_type TEXT NOT NULL,
+    earning_preference TEXT NOT NULL,
+    growth_contribution TEXT NOT NULL,
+    mindset TEXT NOT NULL,
+    team_collaboration TEXT NOT NULL,
+    growth_priority TEXT NOT NULL,
+    partnership_interest TEXT NOT NULL,
+    resume_url TEXT NOT NULL
+);
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE public.job_applications ENABLE ROW LEVEL SECURITY;
+
+-- Allow anonymous users to INSERT job applications (necessary for public form submissions)
+CREATE POLICY "Allow public inserts" ON public.job_applications
+    FOR INSERT 
+    WITH CHECK (true);
+
+-- Allow only authenticated administrators to SELECT (read) job applications
+CREATE POLICY "Allow authenticated selects" ON public.job_applications
+    FOR SELECT 
+    TO authenticated 
+    USING (true);
+
+
+-- ── 5. CAREER RESUMES STORAGE BUCKET ───────────────────────────────────
+
+-- Safely insert storage bucket for resumes
+INSERT INTO storage.buckets (id, name, public) 
+VALUES ('career-resumes', 'career-resumes', true)
+ON CONFLICT (id) DO NOTHING;
+
+-- Enable public insertions (anonymous uploads) into the bucket
+CREATE POLICY "Allow public anonymous uploads to career-resumes" ON storage.objects
+    FOR INSERT 
+    WITH CHECK (
+        bucket_id = 'career-resumes'
+    );
+
+-- Enable public selects (downloads) for objects in "career-resumes" bucket
+CREATE POLICY "Allow public downloads from career-resumes" ON storage.objects
+    FOR SELECT 
+    USING (bucket_id = 'career-resumes');
+
+-- Enable authenticated users (admins) full CRUD access to career-resumes bucket
+CREATE POLICY "Allow admin full control on career-resumes" ON storage.objects
+    FOR ALL 
+    TO authenticated 
+    USING (bucket_id = 'career-resumes');
+
