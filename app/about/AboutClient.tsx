@@ -163,8 +163,8 @@ const TEAM: TeamMember[] = [
   {
     id: 2,
     name: "Syed Danish",
-    position: "Full Stack Architect",
-    tagline: "Engineering premium, pixel-perfect layouts and high-speed web pipelines.",
+    position: "CTO | full stack engineer",
+    tagline: "Transforming ideas into high-performance systems.",
     skills: ["Next.js", "FastAPI", "PostgreSQL", "Flask", "AWS"],
     linkedin: "https://www.linkedin.com/in/syed-danish-354259251",
     email: "syeddanish1092@gmail.com",
