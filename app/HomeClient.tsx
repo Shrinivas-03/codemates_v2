@@ -91,7 +91,7 @@ const TEAM = [
     email: "syeddanish1092@gmail.com",
     status: "CODING",
     statusColor: "bg-cyan-400",
-    imageUrl: "/danish.png",
+    imageUrl: "/danish.jpeg",
     badgeId: "CM-DEV-042",
   },
   {

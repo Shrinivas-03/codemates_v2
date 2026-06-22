@@ -171,7 +171,7 @@ const TEAM: TeamMember[] = [
     status: "CODING",
     statusColor: "bg-cyan-400",
     avatarSeed: "danish",
-    imageUrl: "/danish.png",
+    imageUrl: "/danish.jpeg",
     badgeId: "CM-DEV-042",
   },
   {
