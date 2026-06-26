@@ -163,26 +163,20 @@ const TEAM: TeamMember[] = [
   {
     id: 2,
     name: "Syed Danish",
-<<<<<<< HEAD
+
     position: "CTO",
     tagline: "Directing next-generation technology vision, engineering standards, and robust system architecture.",
-=======
-    position: "CTO | full stack engineer",
-    tagline: "Transforming ideas into high-performance systems.",
->>>>>>> c5bbe2cd0f42547551544ed30bc43e13c50a1d80
+
+
     skills: ["Next.js", "FastAPI", "PostgreSQL", "Flask", "AWS"],
     linkedin: "https://www.linkedin.com/in/syed-danish-354259251",
     email: "syeddanish1092@gmail.com",
     status: "CODING",
     statusColor: "bg-cyan-400",
     avatarSeed: "danish",
-<<<<<<< HEAD
-    imageUrl: "/danish.png",
-    badgeId: "CM-CTO-042",
-=======
+
     imageUrl: "/danish.jpeg",
     badgeId: "CM-DEV-042",
->>>>>>> c5bbe2cd0f42547551544ed30bc43e13c50a1d80
   },
   {
     id: 3,
